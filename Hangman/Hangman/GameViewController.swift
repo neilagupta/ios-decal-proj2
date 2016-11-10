@@ -9,13 +9,17 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    
+    var phrase : String!
+    var hangmanState : Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let hangmanPhrases = HangmanPhrases()
-        let phrase = hangmanPhrases.getRandomPhrase()
+        phrase = hangmanPhrases.getRandomPhrase()
+        generate()
         print(phrase)
     }
 
@@ -34,5 +38,12 @@ class GameViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /**
+        Generates a new string phrase to play the game, and sets up the game
+    */
+    func generate() {
+        hangmanState = 1
+    }
 
 }
