@@ -11,14 +11,18 @@ import UIKit
 class GameViewController: UIViewController {
     
     var phrase : String!
-    var hangmanState : Int!
+    var phraseMatchTracker : [String]!
+    var currentLetters : [String]!
+    var mistakeLetters : [String]!
 
+    @IBOutlet weak var currentLettersLabel: UILabel!
+    
+    @IBOutlet weak var mistakeLettersLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let hangmanPhrases = HangmanPhrases()
-        phrase = hangmanPhrases.getRandomPhrase()
         generate()
         print(phrase)
     }
@@ -40,10 +44,22 @@ class GameViewController: UIViewController {
     */
     
     /**
-        Generates a new string phrase to play the game, and sets up the game
+        sets up the game
     */
     func generate() {
-        hangmanState = 1
+        let hangmanPhrases = HangmanPhrases()
+        phrase = hangmanPhrases.getRandomPhrase()
+        generateBlackSpaces()
+        currentLetters = []
+        mistakeLetters = []
+        phraseMatchTracker = []
+    }
+    
+    /**
+ 
+    */
+    func generateBlackSpaces() {
+        
     }
 
 }
