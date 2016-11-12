@@ -83,6 +83,9 @@
                                 <frame key="frameInset" minX="217" minY="427" width="61" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kUB-8L-Kyd"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1M-Rz-PFi">
                                 <frame key="frameInset" minX="166" minY="427" width="43" height="30"/>
@@ -97,6 +100,7 @@
                     <connections>
                         <outlet property="currentLettersLabel" destination="4QE-di-qbI" id="8hv-g6-tZj"/>
                         <outlet property="mistakeLettersLabel" destination="B7M-lW-GLe" id="niZ-eG-Xhq"/>
+                        <outlet property="submitTextField" destination="v1M-Rz-PFi" id="jAW-c4-qrB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

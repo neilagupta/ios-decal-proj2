@@ -14,7 +14,9 @@ class GameViewController: UIViewController {
     var phraseMatchTracker : [String]!
     var currentLetters : [String]!
     var mistakeLetters : [String]!
+    var hangmanState : Int!
 
+    @IBOutlet weak var submitTextField: UITextField!
     @IBOutlet weak var currentLettersLabel: UILabel!
     
     @IBOutlet weak var mistakeLettersLabel: UILabel!
@@ -52,6 +54,7 @@ class GameViewController: UIViewController {
         currentLetters = []
         mistakeLetters = []
         phraseMatchTracker = []
+        hangmanState = 1
         generateBlackSpaces()
     }
     
@@ -59,6 +62,9 @@ class GameViewController: UIViewController {
         Matches guessed characters with the word
     */
     func generateBlackSpaces() {
+        
+        
+        
         for character in phrase.characters{
             if (character == " ") {
                 phraseMatchTracker.append(" ")
@@ -80,4 +86,30 @@ class GameViewController: UIViewController {
         generate()
     }
 
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        let submission : String! = submitTextField.text!
+        
+        
+        if (submission.characters.count > 1) {
+            //If too many characters in the textbox
+            // create the alert
+            let alert = UIAlertController(title: "Too many characters", message: "You can only submit one character at a time!", preferredStyle: UIAlertControllerStyle.alert)
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            if (phrase.characters.contains(Character(submission)) == false) {
+                mistakeLetters.append(submission)
+                hangmanState = hangmanState + 1
+            }
+        }
+        
+        generateBlackSpaces()
+    }
+    
+    public func hangmanStateUpdate() {
+        
+    }
 }
