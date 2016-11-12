@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     var mistakeLetters : [String]!
     var hangmanState : Int!
 
+    @IBOutlet weak var hangmanUIImageView: UIImageView!
     @IBOutlet weak var submitTextField: UITextField!
     @IBOutlet weak var currentLettersLabel: UILabel!
     
@@ -63,7 +64,9 @@ class GameViewController: UIViewController {
     */
     func generateBlackSpaces() {
         
+        hangmanStateUpdate()
         
+        var noBlankSpaces : Bool! = true
         
         for character in phrase.characters{
             if (character == " ") {
@@ -74,10 +77,23 @@ class GameViewController: UIViewController {
                 //If guessed letter matches with the phrase itll show that letter itself
                 phraseMatchTracker.append(String(character))
             } else {
+                noBlankSpaces = false
                 phraseMatchTracker.append("_")
             }
         }
         currentLettersLabel.text! = phraseMatchTracker.joined(separator: ",");
+        
+        if (noBlankSpaces == true) {
+            // create the alert
+            let alert = UIAlertController(title: "You won!", message: "Congratulations!", preferredStyle: UIAlertControllerStyle.alert)
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "New Game", style: UIAlertActionStyle.default, handler: nil))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            generate()
+        }
+        
+        
     }
     
     
@@ -103,6 +119,8 @@ class GameViewController: UIViewController {
             if (phrase.characters.contains(Character(submission)) == false) {
                 mistakeLetters.append(submission)
                 hangmanState = hangmanState + 1
+            } else {
+                currentLetters.append(submission)
             }
         }
         
@@ -111,5 +129,35 @@ class GameViewController: UIViewController {
     
     public func hangmanStateUpdate() {
         
+        switch hangmanState {
+        case 1:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman1.gif")
+        case 2:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman2.gif")
+        case 3:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman3.gif")
+        case 4:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman4.gif")
+        case 5:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman5.gif")
+        case 6:
+            hangmanUIImageView.image = #imageLiteral(resourceName: "hangman6.gif")
+        case 7:
+            gameLossDisplay()
+        default:
+            return
+        }
+    }
+    
+    public func gameLossDisplay() {
+        hangmanUIImageView.image = #imageLiteral(resourceName: "hangman7.gif")
+        // create the alert
+        let alert = UIAlertController(title: "You lost!", message: "Too many incorrect guesses!", preferredStyle: UIAlertControllerStyle.alert)
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "New Game", style: UIAlertActionStyle.default, handler: nil))
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+        generate()
+
     }
 }

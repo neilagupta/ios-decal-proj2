@@ -99,6 +99,7 @@
                     </view>
                     <connections>
                         <outlet property="currentLettersLabel" destination="4QE-di-qbI" id="8hv-g6-tZj"/>
+                        <outlet property="hangmanUIImageView" destination="IUY-Ze-fHJ" id="HRO-yT-iap"/>
                         <outlet property="mistakeLettersLabel" destination="B7M-lW-GLe" id="niZ-eG-Xhq"/>
                         <outlet property="submitTextField" destination="v1M-Rz-PFi" id="jAW-c4-qrB"/>
                     </connections>
