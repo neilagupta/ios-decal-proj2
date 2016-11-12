@@ -68,6 +68,7 @@ class GameViewController: UIViewController {
         
         var noBlankSpaces : Bool! = true
         
+        phraseMatchTracker = []
         for character in phrase.characters{
             if (character == " ") {
                 phraseMatchTracker.append(" ")
@@ -116,8 +117,12 @@ class GameViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         } else {
+            if (currentLetters.contains(submission)) {
+                return
+            }
             if (phrase.characters.contains(Character(submission)) == false) {
                 mistakeLetters.append(submission)
+                mistakeLettersLabel.text = mistakeLetters.joined(separator: ", ")
                 hangmanState = hangmanState + 1
             } else {
                 currentLetters.append(submission)
