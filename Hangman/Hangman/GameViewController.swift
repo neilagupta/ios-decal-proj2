@@ -73,5 +73,11 @@ class GameViewController: UIViewController {
         }
         currentLettersLabel.text! = phraseMatchTracker.joined(separator: ",");
     }
+    
+    
+    @IBAction func startOverButtonPressed(_ sender: UIButton) {
+        //Restarts the game
+        generate()
+    }
 
 }
