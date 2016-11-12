@@ -49,17 +49,29 @@ class GameViewController: UIViewController {
     func generate() {
         let hangmanPhrases = HangmanPhrases()
         phrase = hangmanPhrases.getRandomPhrase()
-        generateBlackSpaces()
         currentLetters = []
         mistakeLetters = []
         phraseMatchTracker = []
+        generateBlackSpaces()
     }
     
     /**
- 
+        Matches guessed characters with the word
     */
     func generateBlackSpaces() {
-        
+        for character in phrase.characters{
+            if (character == " ") {
+                phraseMatchTracker.append(" ")
+                continue
+            }
+            if (currentLetters.contains(String(character))) {
+                //If guessed letter matches with the phrase itll show that letter itself
+                phraseMatchTracker.append(String(character))
+            } else {
+                phraseMatchTracker.append("_")
+            }
+        }
+        currentLettersLabel.text! = phraseMatchTracker.joined(separator: ",");
     }
 
 }
